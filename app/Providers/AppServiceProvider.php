@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
+//        if($this->app->environment() === 'local'){
+////            DB::listen(function (QueryExecuted $query){
+////                file_put_contents('php://stdout', )
+////                echo "\033[0;34m" . $query->sql . "\033[0m <= ";
+////                echo "\033[0;32m[" . implode(', ', $query->bindings) . "]\033[0m";
+////                echo "\n";
+////            });
+////        }
     }
 }
